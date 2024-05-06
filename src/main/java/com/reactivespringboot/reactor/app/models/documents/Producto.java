@@ -1,8 +1,13 @@
 package com.reactivespringboot.reactor.app.models.documents;
 
+
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -23,14 +28,27 @@ public class Producto {
     private String id;
 
    // Atributos del documento
-
+    @NotEmpty // de javax
     private String nombre;
+    @NotNull
     private Double precio;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createAt;
+    @Valid // Se va a validar
+    private Categoria categoria;
+
+    private String foto;
 
     public Producto(String nombre, Double precio) {
         super();
         this.nombre = nombre;
         this.precio = precio;
+    }
+
+    public Producto(String nombre, Double precio, Categoria categoria) {
+        super();
+        this.nombre = nombre;
+        this.precio = precio;
+        this.categoria = categoria;
     }
 }
