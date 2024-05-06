@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.2.4'
 	id 'io.spring.dependency-management' version '1.1.4'
+	id "io.freefair.lombok" version "8.6"
 }
 
 group = 'com.reactivespringboot.reactor'
@@ -16,8 +17,14 @@ repositories {
 }
 
 dependencies {
+	compileOnly("org.springframework.boot:spring-boot-devtools")
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	implementation 'io.projectreactor:reactor-core'
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive:2.4.4'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:3.2.2'
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation
+	implementation 'org.springframework.boot:spring-boot-starter-validation:3.2.1'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'
 }
